@@ -1,0 +1,22 @@
+# Environment & secrets - JANGAN pernah commit ini
+.env
+.env.*
+!.env.example
+
+# Uploads - file hasil upload user, bukan source code
+uploads/*
+!uploads/.htaccess
+
+# Cache python
+__pycache__/
+*.pyc
+
+# Storage/logs
+storage/logs/*
+!storage/logs/.gitkeep
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: filemanager_app
+
+    ports:
+      - "8080:80"
+
+    volumes:
+      - ./uploads:/var/www/html/uploads
+      - /var/log/filemanager:/var/log/filemanager
+      - ./storage:/var/www/html/storage
+
+    environment:
+      # DB WEBSITE
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASS: ${DB_PASS}
+
+      # Samba
+      SAMBA_HOST: ${SAMBA_HOST}
+      SAMBA_DOMAIN: ${SAMBA_DOMAIN}
+      SAMBA_USER: ${SAMBA_USER}
+      SAMBA_PASSWORD: ${SAMBA_PASSWORD}
+
+      # AD / WinRM
+      AD_SYNC_ENABLED: ${AD_SYNC_ENABLED}
+      AD_HOST: ${AD_HOST}
+      AD_PORT: ${AD_PORT}
+      AD_SSL: ${AD_SSL}
+      AD_AUTH: ${AD_AUTH}
+      AD_USER: ${AD_USER}
+      AD_PASS: ${AD_PASS}
+      AD_PS_SCRIPT_PATH: ${AD_PS_SCRIPT_PATH}
+
+      # Existing AD/Samba structure
+      PBL_NETBIOS_DOMAIN: ${PBL_NETBIOS_DOMAIN}
+      PBL_FINANCE_MEMBER_GROUP: ${PBL_FINANCE_MEMBER_GROUP}
+      PBL_FINANCE_ADMIN_GROUP: ${PBL_FINANCE_ADMIN_GROUP}
+      PBL_HR_MEMBER_GROUP: ${PBL_HR_MEMBER_GROUP}
+      PBL_HR_ADMIN_GROUP: ${PBL_HR_ADMIN_GROUP}
+      PBL_IT_MEMBER_GROUP: ${PBL_IT_MEMBER_GROUP}
+      PBL_IT_ADMIN_GROUP: ${PBL_IT_ADMIN_GROUP}
+      PBL_FINANCE_SHARE_PATH: ${PBL_FINANCE_SHARE_PATH}
+      PBL_HR_SHARE_PATH: ${PBL_HR_SHARE_PATH}
+      PBL_IT_SHARE_PATH: ${PBL_IT_SHARE_PATH}
+      PBL_SET_MEMBER_FOLDER_ACL: ${PBL_SET_MEMBER_FOLDER_ACL}
+      PBL_FAIL_ON_ACL_ERROR: ${PBL_FAIL_ON_ACL_ERROR}
+
+    restart: unless-stopped

@@ -1,0 +1,34 @@
+# Dokumentasi & metadata - gak perlu ada di dalam image
+README.md
+*.md
+
+# Git - JANGAN sampai ikut ke image (bisa bocorin source code + history)
+.git
+.gitignore
+
+# File deployment/config lokal - gak perlu di dalam image itu sendiri
+docker-compose.yml
+docker-compose.yaml
+Dockerfile
+.dockerignore
+
+# Environment & secrets - PALING PENTING, jangan sampai ikut ke image
+.env
+.env.*
+env.example
+
+# Cache python
+scripts/__pycache__
+**/__pycache__
+*.pyc
+
+# Folder uploads - sebaiknya di-mount sebagai volume, bukan ikut di-bake ke image
+# (biar file upload gak ketimpa/hilang tiap kali rebuild image)
+uploads/*
+!uploads/.htaccess
+
+# OS/editor junk
+.DS_Store
+Thumbs.db
+.vscode
+.idea
